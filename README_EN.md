@@ -224,5 +224,7 @@ Whether to run the [customization script](scripts/customize.sh) and customize as
 - [AOSP](https://android.googlesource.com)
 - [KernelSU](https://github.com/tiann/KernelSU)
 - [xiaoxindada](https://github.com/xiaoxindada)
+- [wu17481748](https://github.com/wu17481748)
+- [CGCL-codes](https://github.com/CGCL-codes/Android-Container)
 - [kali-nethunter-kernel](https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-kernel)
 - [FreddieOliveira](https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27#41-kernel-patches)

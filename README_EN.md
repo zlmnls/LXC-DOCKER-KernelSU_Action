@@ -225,3 +225,4 @@ Whether to run the [customization script](scripts/customize.sh) and customize as
 - [KernelSU](https://github.com/tiann/KernelSU)
 - [xiaoxindada](https://github.com/xiaoxindada)
 - [kali-nethunter-kernel](https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-kernel)
+- [FreddieOliveira](https://gist.github.com/FreddieOliveira/efe850df7ff3951cb62d74bd770dce27#41-kernel-patches)

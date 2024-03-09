@@ -202,6 +202,34 @@ LTO 用于优化内核，但有些时候会导致错误
 
 例如: https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/boot/boot-wayne-from-Miku-UI-latest.img
 
+# LXC-DOCKER Action
+
+### KERNEL_DEPTH
+
+内核源码深度，一般为 1 已经足够
+
+### CUT_PYTHON
+
+修改默认 python 为 python2
+
+### LXC_DOCKER | ENABLE_KVM | ANDROID_PARANOID_NETWORK_OFF
+
+启用 lxc-docker | kvm 的内核配置 | 关闭 Android 网络配置(防止容器网络问题)
+
+### ENABLE_NETHUNTER
+
+启用 nethunter 的内核配置，并运行[patch脚本](scripts/patch/kali-nethunter-kernel.sh)，按需自定义
+
+### LXC_PATCH | MAKEFILE_PATCH
+
+进行 lxc-docker | Makefile 的 patch
+- lxc-docker: 运行[patch脚本](scripts/patch/lxc-docker.sh)，按需自定义
+- Makefile: 如果默认的配置覆盖了使用的配置时[进行patch](patches/Makefile.patch)，按需自定义
+
+### CUSTOM_SCRIPT
+
+是否运行[自定义脚本](scripts/customize.sh)，按需自定义
+
 ## 感谢
 
 - [AnyKernel3](https://github.com/osm0sis/AnyKernel3)

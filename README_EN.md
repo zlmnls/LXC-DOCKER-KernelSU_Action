@@ -190,6 +190,34 @@ As the name suggests, it provides a boot image source system that can boot norma
 
 For example: https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/boot/boot-wayne-from-Miku-UI-latest.img
 
+# LXC-DOCKER Action
+
+### KERNEL_DEPTH
+
+Kernel source code depth, usually 1 is sufficient.
+
+### CUT_PYTHON
+
+Change the default Python to Python2.
+
+### LXC_DOCKER | ENABLE_KVM | ANDROID_PARANOID_NETWORK_OFF
+
+Enable the kernel configuration for lxc-docker | kvm | turn off Android network configuration (to prevent container network issues).
+
+### ENABLE_NETHUNTER
+
+Enable the kernel configuration for nethunter, and run the [patch script](scripts/patch/kali-nethunter-kernel.sh) to customize as needed.
+
+### LXC_PATCH | MAKEFILE_PATCH
+
+Perform patching for lxc-docker | Makefile.
+- lxc-docker: run the [patch script](scripts/patch/lxc-docker.sh) to customize as needed.
+- Makefile: if the default configuration overrides the used configuration, [perform patching](patches/Makefile.patch) and customize as needed.
+
+### CUSTOM_SCRIPT
+
+Whether to run the [customization script](scripts/customize.sh) and customize as needed.
+
 ## Thanks
 
 - [AnyKernel3](https://github.com/osm0sis/AnyKernel3)

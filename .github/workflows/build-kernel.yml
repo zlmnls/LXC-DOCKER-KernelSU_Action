@@ -209,7 +209,16 @@ jobs:
             echo "FORMAT_MKBOOTING=$(echo `tools/unpack_bootimg.py --boot_img=boot-source.img --format mkbootimg`)" >> $GITHUB_ENV
             echo "HAVE_SOURCE_BOOT_IMAGE=true" >> $GITHUB_ENV
         fi
-  
+
+    - name: Setup Configuration for KVM
+      if: env.ENABLE_KVM == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_VIRTUALIZATION
+        scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_KVM
+        scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_VHOST_NET
+        scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_VHOST_CROSS_ENDIAN_LEGACY
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

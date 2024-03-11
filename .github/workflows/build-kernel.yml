@@ -376,6 +376,11 @@ jobs:
         fi
         rm -rf AnyKernel3/.git* AnyKernel3/README.md
 
+    - name: Extract ikconfig
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        scripts/extract-ikconfig out/arch/${{ env.ARCH }}/boot/${{ env.KERNEL_IMAGE_NAME }} | tee ../AnyKernel3/.config
+    
     - name: Make boot image
       if: env.HAVE_SOURCE_BOOT_IMAGE == 'true' && env.CHECK_FILE_IS_OK == 'true'
       run: |

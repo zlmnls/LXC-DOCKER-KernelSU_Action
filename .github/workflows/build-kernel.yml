@@ -238,6 +238,13 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --disable ANDROID_PARANOID_NETWORK
 
+    - name: Setup Kali-Nethunter
+      if: env.ENABLE_NETHUNTER == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        bash $GITHUB_WORKSPACE/scripts/patch/kali-nethunter-kernel.sh
+        bash $GITHUB_WORKSPACE/scripts/check-kernel-config/Kali-defconfig-checker.sh arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} -w
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

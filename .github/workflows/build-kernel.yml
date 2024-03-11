@@ -251,6 +251,12 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         patch -p1 < $GITHUB_WORKSPACE/patches/Makefile.patch
 
+    - name: Run customize script
+      if: env.CUSTOM_SCRIPT == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        bash $GITHUB_WORKSPACE/scripts/customize.sh arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }}
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

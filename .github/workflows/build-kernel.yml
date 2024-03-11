@@ -219,6 +219,12 @@ jobs:
         scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_VHOST_NET
         scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --enable CONFIG_VHOST_CROSS_ENDIAN_LEGACY
 
+    - name: Setup Configuration for LXC/Docker
+      if: env.LXC_DOCKER == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        bash $GITHUB_WORKSPACE/scripts/check-kernel-config/LXC-DOCKER-OPEN-CONFIG.sh arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} -w
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

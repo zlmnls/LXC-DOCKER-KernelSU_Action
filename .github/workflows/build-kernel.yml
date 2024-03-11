@@ -225,6 +225,19 @@ jobs:
         cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
         bash $GITHUB_WORKSPACE/scripts/check-kernel-config/LXC-DOCKER-OPEN-CONFIG.sh arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} -w
 
+    - name: Insert LXC patch
+      if: env.LXC_PATCH == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        export LXC_PATCHES=$GITHUB_WORKSPACE/patches/lxc-docker
+        bash $GITHUB_WORKSPACE/scripts/patch/lxc-docker.sh
+
+    - name: Disable ANDROID_PARANOID_NETWORK
+      if: env.ANDROID_PARANOID_NETWORK_OFF == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        scripts/config --file arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} --disable ANDROID_PARANOID_NETWORK
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

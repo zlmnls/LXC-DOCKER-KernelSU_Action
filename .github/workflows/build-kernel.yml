@@ -113,6 +113,10 @@ jobs:
                 wget -O clang.tar.gz ${{ env.CUSTOM_CLANG_SOURCE }}
                 mkdir clang-aosp
                 tar -C clang-aosp/ -zxvf clang.tar.gz
+            elif [[ ${{ env.CUSTOM_CLANG_SOURCE }} == *'.tar.zst' ]]; then
+                wget -O clang.tar.zst ${{ env.CUSTOM_CLANG_SOURCE }}
+                mkdir clang-aosp
+                tar -C clang-aosp/ -I zstd -xf clang.tar.zst
             else
                 git clone ${{ env.CUSTOM_CLANG_SOURCE }} -b ${{ env.CUSTOM_CLANG_BRANCH }} clang-aosp --depth=1
             fi        

@@ -13,4 +13,5 @@ apply_nethunter_patches_except() {
     done
 }
 
+NETHUNTER_PATCHES=$GITHUB_WORKSPACE/patches/kali-nethunter-kernel/4.14
 apply_nethunter_patches_except add-rtl8188eus-to-rtl8xxxu-drivers-4.14.patch

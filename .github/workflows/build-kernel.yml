@@ -245,6 +245,12 @@ jobs:
         bash $GITHUB_WORKSPACE/scripts/patch/kali-nethunter-kernel.sh
         bash $GITHUB_WORKSPACE/scripts/check-kernel-config/Kali-defconfig-checker.sh arch/${{ env.ARCH }}/configs/${{ env.KERNEL_CONFIG }} -w
 
+    - name: Insert Makefile patch
+      if: env.MAKEFILE_PATCH == 'true'
+      run: |
+        cd $GITHUB_WORKSPACE/kernel_workspace/android-kernel
+        patch -p1 < $GITHUB_WORKSPACE/patches/Makefile.patch
+
     - name: Setup KernelSU
       if: env.ENABLE_KERNELSU == 'true'
       run: |

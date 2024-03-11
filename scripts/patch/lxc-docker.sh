@@ -11,13 +11,11 @@ apply_patch() {
   local target_file=$2
 
   if [ ! -f "$target_file" ]; then
-    echo "Error: Target file '$target_file' does not exist."
-    return 1
+    echo "Warning: Target file '$target_file' does not exist."
   fi
 
   if [ ! -f "$patch_file" ]; then
-    echo "Error: Patch file '$patch_file' does not exist."
-    return 1
+    echo "Warning: Patch file '$patch_file' does not exist."
   fi
 
   patch -p1 < "$patch_file"
@@ -25,8 +23,7 @@ apply_patch() {
   if [ $? -eq 0 ]; then
     echo "Patch applied successfully."
   else
-    echo "Error: Failed to apply patch."
-    return 1
+    echo "Warning: Failed to apply patch."
   fi
 }
 
